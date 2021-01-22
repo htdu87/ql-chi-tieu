@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -60,12 +61,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
         if (error!=null) {
             Log.e("htdu87","FirebaseFirestoreException: "+error);
+            Toast.makeText(context,"Lỗi lấy dữ liệu từ Firestore, vui lòng thử lại sau",Toast.LENGTH_SHORT).show();
             return;
         }
 
         for (DocumentChange doc:value.getDocumentChanges()) {
             //DocumentSnapshot snapshot=doc.getDocument();
-
             switch (doc.getType()) {
                 case ADDED:
                     onAdd(doc);

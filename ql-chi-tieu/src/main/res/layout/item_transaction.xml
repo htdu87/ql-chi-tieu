@@ -47,6 +47,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:text="500.000"
+        android:gravity="end"
         style="@style/TextAppearance.AppCompat.Headline"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
