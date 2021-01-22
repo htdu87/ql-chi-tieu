@@ -1,0 +1,35 @@
+<resources>
+    <string name="app_name">QL Chi Tiêu</string>
+    <string name="app_full_name">Quản lý chi tiêu</string>
+    <string name="full_name">Họ tên</string>
+    <string name="address">Địa chỉ</string>
+    <string name="tel">Số điện thoại</string>
+    <string name="gender">Giới tính:</string>
+    <string name="male">Nam</string>
+    <string name="female">Nữ</string>
+    <string name="username">Tên đăng nhập</string>
+    <string name="register">Đăng ký</string>
+    <string name="email">Email</string>
+    <string name="reg_account">Đăng ký tài khoản</string>
+    <string name="cancel">Hủy</string>
+    <string name="yes">Có</string>
+    <string name="no">Không</string>
+    <string name="ok">Đồng ý</string>
+    <string name="login">Đăng nhập</string>
+    <string name="password">Mật khẩu</string>
+    <string name="or">Hoặc</string>
+    <string name="logout">Đăng xuất</string>
+    <string name="add">Thêm</string>
+    <string name="trans_name">Tên giao dịch</string>
+    <string name="trans_date">Ngày (dd/MM/yyyy HH:mm)</string>
+    <string name="amount">Số tiền</string>
+    <string name="trans_type">Loại</string>
+    <string name="trans_out">Tiền ra</string>
+    <string name="trans_in">Tiền vào</string>
+    <string name="trans_desc">Mô tả giao dịch</string>
+    <string name="transaction">Giao dịch</string>
+    <string name="save">Lưu</string>
+    <string name="statistic">Thống kê</string>
+    <string name="delete">Xóa</string>
+    <string name="change_date">Chọn khoảng thời gian</string>
+</resources>

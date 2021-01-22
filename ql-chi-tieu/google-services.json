@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "361017347695",
+    "project_id": "ql-chi-tieu-d7f84",
+    "storage_bucket": "ql-chi-tieu-d7f84.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:361017347695:android:b68fb07c70d71b8ad5c79a",
+        "android_client_info": {
+          "package_name": "vn.edu.ctu.cit.qlchitieu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "361017347695-640oahud7j3dbnq6v9t43ac3ts8hk7j8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA76kYsomVe29B15WksJHi7IDkeiaZdGXk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "361017347695-640oahud7j3dbnq6v9t43ac3ts8hk7j8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

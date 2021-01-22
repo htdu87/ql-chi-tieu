@@ -1,0 +1,2 @@
+include ':ql-chi-tieu'
+rootProject.name = "QL Chi Tieu"
