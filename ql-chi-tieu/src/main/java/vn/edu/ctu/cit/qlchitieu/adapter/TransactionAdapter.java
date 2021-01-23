@@ -40,6 +40,7 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     private NumberFormat numberFormat;
     private Context context;
     private User user;
+    private TransactionAdapterEvents events;
 
     public TransactionAdapter(Context context,User u, Query query) {
         query.addSnapshotListener(this);
@@ -55,6 +56,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         query.addSnapshotListener(this);
         data.clear();
         notifyDataSetChanged();
+    }
+
+    public void setTransactionAdapterEventsListener(TransactionAdapterEvents e) {
+        events=e;
     }
 
     @Override
@@ -79,6 +84,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
                     break;
             }
         }
+
+        updateMoney();
     }
 
     @Override
@@ -117,12 +124,27 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
         return data.size();
     }
 
-    Transaction getById(String id) {
+    private Transaction getById(String id) {
         for (Transaction tr:data) {
             if (tr.getId().equalsIgnoreCase(id))
                 return tr;
         }
         return null;
+    }
+
+    private void updateMoney() {
+        double in=0;
+        double out=0;
+
+        for (Transaction t:data) {
+            if (t.getType().equalsIgnoreCase("OUT"))
+                out+=t.getAmount();
+            else
+                in+=t.getAmount();
+        }
+
+        if (events!=null)
+            events.onUpdateTrans(out,in);
     }
 
     void onMod(DocumentChange doc) {
@@ -176,6 +198,10 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
 
         data.add(doc.getNewIndex(),trans);
         notifyItemInserted(doc.getNewIndex());
+    }
+
+    public interface TransactionAdapterEvents {
+        void onUpdateTrans(double out, double in);
     }
 
     /**

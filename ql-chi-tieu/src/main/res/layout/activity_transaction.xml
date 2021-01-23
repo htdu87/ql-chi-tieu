@@ -33,6 +33,7 @@
             android:id="@+id/lay_trans_amount"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="0.4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@id/lay_trans_date"
             app:layout_constraintTop_toBottomOf="@id/lay_trans_name">
@@ -48,6 +49,7 @@
             android:id="@+id/lay_trans_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            app:layout_constraintHorizontal_weight="0.6"
             app:layout_constraintTop_toBottomOf="@id/lay_trans_name"
             app:layout_constraintLeft_toRightOf="@id/lay_trans_amount"
             app:layout_constraintRight_toRightOf="parent">

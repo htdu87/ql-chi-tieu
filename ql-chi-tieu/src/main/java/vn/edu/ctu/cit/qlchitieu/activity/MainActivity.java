@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.DatePicker;
@@ -26,10 +27,12 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import vn.edu.ctu.cit.qlchitieu.LocalDatabase;
@@ -37,11 +40,15 @@ import vn.edu.ctu.cit.qlchitieu.R;
 import vn.edu.ctu.cit.qlchitieu.adapter.TransactionAdapter;
 import vn.edu.ctu.cit.qlchitieu.model.User;
 
-public class MainActivity extends AppCompatActivity implements OnSelectDateListener {
+public class MainActivity extends AppCompatActivity implements OnSelectDateListener,
+        TransactionAdapter.TransactionAdapterEvents {
     private LocalDatabase lcdb;
     private User user;
     private FirebaseFirestore db;
     private TransactionAdapter adapter;
+    private TextView lblAmountIn;
+    private TextView lblAmountOut;
+    private NumberFormat numberFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,14 +68,21 @@ public class MainActivity extends AppCompatActivity implements OnSelectDateListe
         to.set(Calendar.MINUTE,59);
         to.set(Calendar.SECOND,59);
 
+        numberFormat=NumberFormat.getNumberInstance(Locale.getDefault());
         db=FirebaseFirestore.getInstance();
+
         Query query = db.collection("transactions")
                 .whereGreaterThanOrEqualTo("date",from.getTime())
                 .whereLessThanOrEqualTo("date",to.getTime())
                 .whereEqualTo("userid",db.document("users/"+ user.getId()))
                 .orderBy("date",Query.Direction.DESCENDING);
 
+        lblAmountIn=findViewById(R.id.lbl_amount_in);
+        lblAmountOut=findViewById(R.id.lbl_amount_out);
+
         adapter=new TransactionAdapter(this,user,query);
+        adapter.setTransactionAdapterEventsListener(this);
+
         RecyclerView recyclerView=findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.addItemDecoration(new DividerItemDecoration(this,DividerItemDecoration.VERTICAL));
@@ -156,5 +170,12 @@ public class MainActivity extends AppCompatActivity implements OnSelectDateListe
                 .whereLessThanOrEqualTo("date",to.getTime())
                 .orderBy("date",Query.Direction.DESCENDING);
         adapter.setQuery(query);
+    }
+
+    @Override
+    public void onUpdateTrans(double out, double in) {
+        //Log.d("htdu87","Out: "+out+" - In: "+in);
+        lblAmountOut.setText(numberFormat.format(out));
+        lblAmountIn.setText(numberFormat.format(in));
     }
 }
